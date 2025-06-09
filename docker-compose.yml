@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    container_name: timescaledb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: vehicle_data
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescale_data:/var/lib/postgresql/data
+
+  publisher:
+    build: .
+    container_name: mqtt_publisher
+    command: python vehicle_publisher.py
+    depends_on:
+      - timescaledb
+
+  subscriber:
+    build: .
+    container_name: mqtt_subscriber
+    command: python mqtt_subscriber.py
+    depends_on:
+      - timescaledb
+
+volumes:
+  timescale_data:
