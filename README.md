@@ -91,13 +91,15 @@ Received: {
 ## 🧭 Viewing Data with DBeaver
 1. Open **DBeaver** and create a new PostgreSQL connection.
 2. Use the following credentials: 
+
 | Field    | Value              |
 | -------- | ------------------ |
-| Host     | `localhost`        |
-| Port     | `5432`             |
-| Database | `vehicle_data`     |
-| User     | `postgres`         |
-| Password | `mysecretpassword` |
+| Host     | localhost          |
+| Port     | 5432               |
+| Database | vehicle_data       |
+| User     | postgres           |
+| Password | mysecretpassword   |
+
 
 3. Navigate to the vehicle_telemetry table and run:
 ```sql
